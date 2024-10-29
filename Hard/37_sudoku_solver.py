@@ -52,7 +52,6 @@ class Solution:
                     rows[r].remove(num)
                     cols[c].remove(num)
                     boxes[(r // 3, c // 3)].remove(num)
-                    print("R: ", r, "C: ", c)
 
             return False  # Trigger backtracking
 
