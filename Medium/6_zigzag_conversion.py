@@ -18,5 +18,5 @@ class Solution:
         return res
 
 if __name__ == '__main__':
-    print(Solution.convert(Solution, "ABC", 3))
+    print(Solution.convert(Solution, "ABCXYZASDASD", 3))
 
