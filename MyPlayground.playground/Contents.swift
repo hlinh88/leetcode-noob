@@ -2,22 +2,18 @@ import Foundation
 
 
 class Solution {
-    func clearDigits(_ s: String) -> String {
-        var s = s
-        var res = ""
-
-        for char in s {
-            if char.isNumber {
-                res.removeLast()
-            } else {
-                res += String(char)
-            }
+    func countBadPairs(_ nums: [Int]) -> Int {
+        var dict: [Int: Int] = [:]
+        var count = 0
+        
+        for i in 0..<nums.count {
+            dict[nums[i] - i, default: 0] += 1
+            count += dict[nums[i] - i]! - 1
         }
+        print(dict)
         
-        print(res)
-        
-        return res
+        return (nums.count * (nums.count - 1) / 2) - count
     }
 }
 
-Solution().clearDigits("pl5v0jttxe9acvd0t9vtxwrhvwajpasfe2nhtws48pweam4vsomd79nw14ed")
+Solution().countBadPairs([4,1,3,3])
