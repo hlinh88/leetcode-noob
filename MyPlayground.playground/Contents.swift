@@ -1,26 +1,23 @@
 import Foundation
 
-class Solution {
-    func removeDuplicates(_ nums: inout [Int]) -> Int {
-        var set: [Int] = []
 
-        for num in nums {
-            if !set.contains(num) {
-                set.append(num)
+class Solution {
+    func clearDigits(_ s: String) -> String {
+        var s = s
+        var res = ""
+
+        for char in s {
+            if char.isNumber {
+                res.removeLast()
+            } else {
+                res += String(char)
             }
         }
-
-        for (i, num) in set.enumerated() {
-            nums[i] = num
-        }
-
-        print(set)
-        print(nums)
-
-        return set.count
+        
+        print(res)
+        
+        return res
     }
 }
 
-
-var arr = [0,0,1,1,1,2,2,3,3,4]
-Solution().removeDuplicates(&arr)
+Solution().clearDigits("pl5v0jttxe9acvd0t9vtxwrhvwajpasfe2nhtws48pweam4vsomd79nw14ed")
