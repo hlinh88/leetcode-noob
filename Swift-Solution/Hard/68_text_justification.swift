@@ -1,9 +1,15 @@
-import Foundation
+//Input: words = ["This", "is", "an", "example", "of", "text", "justification."], maxWidth = 16
+//Output:
+//[
+//   "This    is    an",
+//   "example  of text",
+//   "justification.  "
+//]
 
 class Solution {
     func fullJustify(_ words: [String], _ maxWidth: Int) -> [String] {
         var res: [String] = []
-        
+
         var lines: [[String]] = []
         var currentLine: [String] = []
         var currentLineCounter = 0
@@ -19,21 +25,21 @@ class Solution {
                 currentLine = [word]
                 currentLineCounter = word.count
             }
-          
+
 //            print("word: \(word), currentLineCounter: \(currentLineCounter), currentLine: \(currentLine), lines: \(lines)")
         }
 
         if !currentLine.isEmpty {
             lines.append(currentLine)
         }
-        
+
         print(lines)
-        
+
         for (index, line) in lines.enumerated() {
             let totalChar = line.reduce(0) { $0 + $1.count }
             let totalSpace = maxWidth - totalChar
             let gaps = line.count - 1
-            
+
             if gaps == 0 {
                 res.append(line[0] + String(repeating: " ", count: totalSpace))
             } else {
