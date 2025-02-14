@@ -1,14 +1,21 @@
-import Foundation
+//Design an algorithm that accepts a stream of integers and retrieves the product of the last k integers of the stream.
+//
+//Implement the ProductOfNumbers class:
+//
+//ProductOfNumbers() Initializes the object with an empty stream.
+//void add(int num) Appends the integer num to the stream.
+//int getProduct(int k) Returns the product of the last k numbers in the current list. You can assume that always the current list has at least k numbers.
+//The test cases are generated so that, at any time, the product of any contiguous sequence of numbers will fit into a single 32-bit integer without overflowing.
 
 
 class ProductOfNumbers {
     var products: [Int] = []
     var product = 1
-    
+
     init() {
-        
+
     }
-    
+
     func add(_ num: Int) {
         if num == 0 {
             self.product = 1
@@ -18,7 +25,7 @@ class ProductOfNumbers {
             self.products.append(self.product)
         }
     }
-    
+
     func getProduct(_ k: Int) -> Int {
         if products.count < k {
             return 0
@@ -36,13 +43,3 @@ class ProductOfNumbers {
  * obj.add(num)
  * let ret_2: Int = obj.getProduct(k)
  */
-
-let obj = ProductOfNumbers()
-obj.add(3)
-obj.add(0)
-obj.add(2)
-obj.add(5)
-obj.add(4)
-let ret_2: Int = obj.getProduct(2)
-print(ret_2)
-
