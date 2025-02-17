@@ -1,4 +1,5 @@
-import Foundation
+//Input: s = "(1+(4+5+2)-3)+(6+8)"
+//Output: 23
 
 class Solution {
     func calculate(_ s: String) -> Int {
@@ -6,7 +7,7 @@ class Solution {
         var num = 0
         var sign = 1
         var stack = [sign]
-        
+
         for char in s where char != " " {
             switch char {
             case "+", "-":
@@ -22,10 +23,10 @@ class Solution {
             default:
                 num = num * 10 + char.wholeNumberValue!
             }
-            
+
             print("result: \(result), num: \(num), sign: \(sign), stack: \(stack)")
         }
-        
+
         return result + num * sign
     }
 }
