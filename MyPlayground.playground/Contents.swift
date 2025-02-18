@@ -1,32 +1,17 @@
 import Foundation
 
 class Solution {
-    func smallestNumber(_ pattern: String) -> String {
-        let pattern = Array(pattern)
-        var res = ""
-        var nums = Array(1...9)
-        var dCount = 0
+    func firstMissingPositive(_ nums: [Int]) -> Int {
+        var nums = Set(nums)
+        var res = 1
         
-        for (i, p) in pattern.enumerated() {
-            if p == "D" {
-                dCount += 1
-            } else {
-                for d in stride(from: dCount, through: 0, by: -1) {
-                    res += String(nums[d])
-                }
-                nums.removeFirst(dCount + 1)
-                dCount = 0
-            }
-        }
-        
-        for d in stride(from: dCount, through: 0, by: -1) {
-            res += String(nums[d])
+        while nums.contains(res) {
+            res += 1
         }
         
         return res
     }
-
 }
 
-Solution().smallestNumber("IIIDIDDD")
+Solution().firstMissingPositive([3,4,-1,1])
 
