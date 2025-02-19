@@ -1,28 +1,35 @@
-class Solution {
-    func setZeroes(_ matrix: inout [[Int]]) {
-        var rows: Set<Int> = []
-        var cols: Set<Int> = []
+class RandomizedSet {
+    var dict = [Int:Int]()
+    var arr = [Int]()
+
+    func insert(_ val: Int) -> Bool {
+        guard dict[val] == nil else { return false }
+        dict[val] = arr.count
+        arr.append(val)
+        return true
+    }
+    
+    func remove(_ val: Int) -> Bool {
+        guard let targetIndex = dict[val] else { return false }
+        let endValue = arr.last!
+        arr[targetIndex] = endValue
+        dict[endValue] = targetIndex
         
-        for r in 0..<matrix.count {
-            for c in 0..<matrix[r].count {
-                if matrix[r][c] == 0 {
-                    rows.insert(r)
-                    cols.insert(c)
-                }
-            }
-        }
-        
-        for r in 0..<matrix.count {
-            for c in 0..<matrix[r].count {
-                if rows.contains(r) || cols.contains(c) {
-                    matrix[r][c] = 0
-                }
-            }
-        }
-        
-        print(matrix)
+        dict[val] = nil
+        arr.removeLast()
+        return true
+    }
+    
+    func getRandom() -> Int {
+        return arr[Int.random(in: arr.indices)]
     }
 }
 
-var matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
-Solution().setZeroes(&matrix)
+let obj = RandomizedSet()
+obj.insert(1)
+obj.insert(3)
+obj.insert(4)
+obj.insert(4)
+obj.insert(5)
+obj.remove(1)
+let ret_3: Int = obj.getRandom()
