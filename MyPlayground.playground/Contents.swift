@@ -1,31 +1,34 @@
 import Foundation
 
 class Solution {
-    func summaryRanges(_ nums: [Int]) -> [String] {
-        if nums.count == 0 {
-            return []
-        }
-        var res: [String] = []
-        var cur: [Int] = [nums[0]]
+    func countAndSay(_ n: Int) -> String {
+        var res = "1"
         
-        for i in 1..<nums.count {
-            print(nums[i])
-           
-            if nums[i] - 1 != nums[i-1] {
-                res.append(cur.count == 1 ? "\(cur[0])" : "\(cur[0])->\(cur[cur.count-1])")
-                cur = []
-            }
-            
-            cur.append(nums[i])
+        for _ in 1..<n {
+            res = rle(res)
         }
         
-        if !cur.isEmpty {
-            res.append(cur.count == 1 ? "\(cur[0])" : "\(cur[0])->\(cur[cur.count-1])")
-        }
-        
-        print(res)
         return res
+    }
+    
+    func rle(_ str: String) -> String {
+        var result = ""
+        var previousChar = str.first!
+        var count = 0
+
+        for char in str {
+            if char == previousChar {
+                count += 1
+            } else {
+                result.append("\(count)\(previousChar)")
+                previousChar = char
+                count = 1
+            }
+        }
+        
+        result.append("\(count)\(previousChar)")
+        return result
     }
 }
 
-Solution().summaryRanges([0,2,3,4,6,8,9])
+Solution().countAndSay(4)
