@@ -23,22 +23,22 @@ class FindElements {
             dfs(root, 0)
         }
     }
-    
+
     func find(_ target: Int) -> Bool {
         return values.contains(target)
     }
-    
+
     func dfs(_ node: TreeNode?, _ val: Int) {
         guard let node = node else { return }
         node.val = val
         values.insert(val)
-        
+
 //        print(node.val)
 //        print(node.left?.val)
 //        print(node.right?.val)
 //        print(values)
 //        print("-------")
-        
+
         dfs(node.left, 2 * val + 1)
         dfs(node.right, 2 * val + 2)
     }
