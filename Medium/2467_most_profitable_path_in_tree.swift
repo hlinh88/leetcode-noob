@@ -9,7 +9,7 @@ class Solution {
             adjGraph[a].append(b)
             adjGraph[b].append(a)
         }
-        
+
         print(adjGraph)
 
         // 2. Update amount based on the Bob movement.
@@ -47,7 +47,7 @@ class Solution {
             return false
         }
         dfs1(0)
-        
+
         // 3. Find the best max net income for Alice.
         func dfs2(_ node: Int, _ prev: Int?) -> Int {
             guard adjGraph[node].count > (prev == nil ? 0 : 1) else {
