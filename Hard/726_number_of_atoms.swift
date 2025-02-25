@@ -1,3 +1,7 @@
+//Input: formula = "K4(ON(SO3)2)2"
+//Output: "K4N2O14S4"
+//Explanation: The count of elements are {'K': 4, 'N': 2, 'O': 14, 'S': 4}.
+
 class Solution {
     func countOfAtoms(_ formula: String) -> String {
         var stack: [[String: Int]] = [[:]]
@@ -18,7 +22,7 @@ class Solution {
                     i += 1
                 }
                 multiplier = max(multiplier, 1)
-                
+
                 if let top = stack.popLast() {
                     for (key, value) in top {
                         stack[stack.count - 1][key, default: 0] += value * multiplier
@@ -39,10 +43,10 @@ class Solution {
                     i += 1
                 }
                 count = max(count, 1)
-                
+
                 stack[stack.count - 1][element, default: 0] += count
             }
-            
+
             print(stack)
         }
 
