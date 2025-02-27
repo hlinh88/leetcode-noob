@@ -1,8 +1,10 @@
+// Quick Sort + Merge Sort
+
 class Solution {
     func sortArray(_ nums: [Int]) -> [Int] {
         return mergeSort(nums)
     }
-    
+
     func quickSort(_ array: [Int]) -> [Int] {
         guard array.count > 1 else { return array }
 
@@ -10,10 +12,10 @@ class Solution {
         let left = array.filter { $0 < pivot }
         let middle = array.filter { $0 == pivot }
         let right = array.filter { $0 > pivot }
-        
+
         return quickSort(left) + middle + quickSort(right)
     }
-    
+
     func mergeSort(_ array: [Int]) -> [Int] {
         guard array.count > 1 else { return array }
 
