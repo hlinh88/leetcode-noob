@@ -25,7 +25,7 @@ class Solution {
             } else {
                 l = mid + 1
             }
-            
+
             print("l: \(l), r: \(r), mid: \(mid), count1: \(count1), count2: \(count2), k: \(k)")
         }
 
