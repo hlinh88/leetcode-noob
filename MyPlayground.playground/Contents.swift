@@ -1,24 +1,26 @@
 class Solution {
-    func intersect(_ nums1: [Int], _ nums2: [Int]) -> [Int] {
-        var res: [Int] = []
-        var dict: [Int: Int] = [:]
-        
-        for num in nums1 {
-            dict[num, default: 0] += 1
+    func applyOperations(_ nums: [Int]) -> [Int] {
+        var nums = nums
+        var i = 0
+        while i < nums.count - 1 {
+            if nums[i] == nums[i+1] {
+                nums[i] *= 2
+                nums[i+1] = 0
+            }
+
+            i += 1
         }
         
-        for num in nums2 {
-            if let value = dict[num] {
-                res.append(num)
-                dict[num]! -= 1
-                if dict[num] == 0 {
-                    dict[num] = nil
-                }
+        var l = 0
+        for r in 0..<nums.count {
+            if nums[r] != 0 {
+                nums.swapAt(l, r)
+                l += 1
             }
         }
-        
-        return res
+
+        return nums
     }
 }
 
-Solution().intersect([1,2,2,1], [2,2])
+Solution().applyOperations([1,2,2,1,1,0])
