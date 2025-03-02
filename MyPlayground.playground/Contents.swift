@@ -1,26 +1,26 @@
 class Solution {
-    func applyOperations(_ nums: [Int]) -> [Int] {
-        var nums = nums
-        var i = 0
-        while i < nums.count - 1 {
-            if nums[i] == nums[i+1] {
-                nums[i] *= 2
-                nums[i+1] = 0
-            }
+    func mergeArrays(_ nums1: [[Int]], _ nums2: [[Int]]) -> [[Int]] {
+        var res = [[Int]]()
+        var dict: [Int: Int] = [:]
 
-            i += 1
+        for num in nums1 {
+            dict[num[0], default: 0] += num[1]
         }
-        
-        var l = 0
-        for r in 0..<nums.count {
-            if nums[r] != 0 {
-                nums.swapAt(l, r)
-                l += 1
+
+        for num in nums2 {
+            if let value = dict[num[0]] {
+                dict[num[0]] = value + num[1]
+            } else {
+                dict[num[0], default: 0] += num[1]
             }
         }
 
-        return nums
+        for (k, v) in dict.sorted(by: {$0.key < $1.key}) {
+            res.append([k, v])
+        }
+
+        return res
     }
 }
 
-Solution().applyOperations([1,2,2,1,1,0])
+Solution().mergeArrays([[1,2],[2,3],[4,5]], [[1,4],[3,2],[4,1]])
