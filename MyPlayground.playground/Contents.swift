@@ -18,29 +18,22 @@ public class ListNode {
 }
  
 class Solution {
-    func mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
-        var merged = ListNode(0)
-        var cur = merged
-        var l1 = list1, l2 = list2
+    func addTwoNumbers(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+        var dummy = ListNode(0)
+        var cur = dummy
+        var l1 = l1, l2 = l2
+        var carry = 0
         
-        while l1 != nil && l2 != nil {
-            if l1!.val < l2!.val {
-                cur.next = l1
-                l1 = l1?.next
-            } else {
-                cur.next = l2
-                l2 = l2?.next
-            }
+        while l1 != nil || l2 != nil || carry != 0 {
+            let sum = (l1?.val ?? 0) + (l2?.val ?? 0) + carry
+            carry = sum / 10
+            cur.next = ListNode(sum % 10)
             cur = cur.next!
+            l1 = l1?.next
+            l2 = l2?.next
         }
         
-        if l1 != nil {
-            cur.next = l1
-        } else {
-            cur.next = l2
-        }
-        
-        return merged.next
+        return dummy.next
     }
 }
 
