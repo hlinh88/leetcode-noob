@@ -1,34 +1,27 @@
 class Solution {
-    func validPalindrome(_ s: String) -> Bool {
-        var s = Array(s)
-        var l = 0, r = s.count - 1
+    func bagOfTokensScore(_ tokens: [Int], _ power: Int) -> Int {
+        var tokens = tokens.sorted()
+        var power = power, score = 0, res = 0
+        var l = 0, r = tokens.count - 1
 
-        while l < r {
-            if s[l] != s[r] {
-                return isPalindrome(Array(s[l + 1...r])) || isPalindrome(Array(s[l...r - 1]))
+        while l <= r {
+            if power >= tokens[l] {
+                power -= tokens[l]
+                l += 1
+                score += 1
+                res = max(res, score)
+            } else if score > 0 {
+                power += tokens[r]
+                r -= 1
+                score -= 1
+            } else {
+                break
             }
-
-            l += 1
-            r -= 1
         }
 
-        return true
+        return res
     }
 
-    func isPalindrome(_ s: [Character]) -> Bool {
-        var l = 0, r = s.count - 1
-        while l < r {
-            print("L: \(l), R: \(r)")
-            if s[l] != s[r] {
-                return false
-            }
-
-            l += 1
-            r -= 1
-        }
-
-        return true
-    }
 }
 
-Solution().validPalindrome("ebcbbececabbacecbbcbe")
+Solution().bagOfTokensScore([100,200,300,400], 200)
