@@ -1,4 +1,6 @@
-import Foundation
+// Input: n = 91
+// Output: true
+// Explanation: 91 = 30 + 32 + 34
 
 class Solution {
     func checkPowersOfThree(_ n: Int) -> Bool {
