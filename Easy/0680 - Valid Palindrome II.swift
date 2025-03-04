@@ -1,3 +1,7 @@
+// Input: s = "abca"
+// Output: true
+// Explanation: You could delete the character 'c'.
+
 class Solution {
     func validPalindrome(_ s: String) -> Bool {
         var s = Array(s)
