@@ -7,6 +7,9 @@ public class ListNode {
 }
 
 class Solution {
+    // 1: Move initial pointer and current pointer to (L-1, L) position
+    // 2: Do reverse linked list from range (L, R)
+    // 3: Set next node of initial pointer to first node of current and prev
     func reverseBetween(_ head: ListNode?, _ left: Int, _ right: Int) -> ListNode? {
         var dummy = ListNode(0, head)
         var initial = dummy, cur = head
