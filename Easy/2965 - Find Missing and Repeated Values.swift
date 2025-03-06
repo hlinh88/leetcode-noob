@@ -1,3 +1,7 @@
+// Input: grid = [[9,1,7],[8,9,2],[3,4,6]]
+// Output: [9,5]
+// Explanation: Number 9 is repeated and number 5 is missing so the answer is [9,5].
+
 class Solution {
     func findMissingAndRepeatedValues(_ grid: [[Int]]) -> [Int] {
         let n = grid.count
