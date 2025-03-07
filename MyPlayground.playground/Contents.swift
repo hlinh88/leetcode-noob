@@ -1,37 +1,3 @@
-public class ListNode {
-    public var val: Int
-    public var next: ListNode?
-    public init() { self.val = 0; self.next = nil; }
-    public init(_ val: Int) { self.val = val; self.next = nil; }
-    public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
-}
-
-class Solution {
-    func reverseBetween(_ head: ListNode?, _ left: Int, _ right: Int) -> ListNode? {
-        var dummy = ListNode(0, head)
-        var initial = dummy, cur = head
-
-        for i in 0..<left-1 {
-            initial = cur!
-            cur = cur?.next
-        }
-        
-        var prev: ListNode?
-        for i in 0..<right-left+1 {
-            let next = cur?.next
-            cur?.next = prev
-            prev = cur
-            cur = next
-        }
-    
-        initial.next?.next = cur
-        initial.next = prev
-        
-        return dummy.next
-    }
-}
-
-// Helper function to create a linked list from an array
 func createLinkedList(_ values: [Int]) -> ListNode? {
     guard !values.isEmpty else { return nil }
     let dummy = ListNode(0)
@@ -54,5 +20,44 @@ func printLinkedList(_ head: ListNode?) {
     print(result)
 }
 
+public class ListNode {
+    public var val: Int
+    public var next: ListNode?
+    public init() { self.val = 0; self.next = nil; }
+    public init(_ val: Int) { self.val = val; self.next = nil; }
+    public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
+}
 
-Solution().reverseBetween(createLinkedList([1,2,3,4,5]), 2, 4)
+class Solution {
+    func reverseKGroup(_ head: ListNode?, _ k: Int) -> ListNode? {
+         guard let head, k > 1 else { return head }
+        
+        let dummy = ListNode(0, head)
+        var prev: ListNode? = dummy, current: ListNode? = head
+        
+        var count = 0
+        while current != nil {
+            count += 1
+            current = current?.next
+        }
+        
+        while count >= k {
+            var cur = prev?.next
+            var next = cur?.next
+            
+            for i in 1..<k {
+                cur?.next = next?.next
+                next?.next = prev?.next
+                prev?.next = next
+                next = cur?.next
+            }
+            
+            prev = cur
+            count -= k
+        }
+        
+        return dummy.next
+    }
+}
+
+Solution().reverseKGroup(createLinkedList([1,2,3,4,5]), 2)
