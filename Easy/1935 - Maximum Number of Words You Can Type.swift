@@ -1,3 +1,7 @@
+// Input: text = "hello world", brokenLetters = "ad"
+// Output: 1
+// Explanation: We cannot type "world" because the 'd' key is broken.
+
 class Solution {
     func canBeTypedWords(_ text: String, _ brokenLetters: String) -> Int {
         var broken = Set(brokenLetters)
@@ -14,8 +18,6 @@ class Solution {
             }
         }
         
-        return count
+        return count 
     }
 }
-
-Solution().canBeTypedWords("hello world", "ad")
