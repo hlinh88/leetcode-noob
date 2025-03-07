@@ -29,35 +29,33 @@ public class ListNode {
 }
 
 class Solution {
-    func reverseKGroup(_ head: ListNode?, _ k: Int) -> ListNode? {
-         guard let head, k > 1 else { return head }
+    func findDuplicate(_ nums: [Int]) -> Int {
+        var slow = 0, fast = 0
         
-        let dummy = ListNode(0, head)
-        var prev: ListNode? = dummy, current: ListNode? = head
-        
-        var count = 0
-        while current != nil {
-            count += 1
-            current = current?.next
-        }
-        
-        while count >= k {
-            var cur = prev?.next
-            var next = cur?.next
+        while true {
+            slow = nums[slow]
+            fast = nums[nums[fast]]
             
-            for i in 1..<k {
-                cur?.next = next?.next
-                next?.next = prev?.next
-                prev?.next = next
-                next = cur?.next
+            print("slow: \(slow), fast: \(fast)")
+            
+            if slow == fast {
+                break
             }
-            
-            prev = cur
-            count -= k
         }
         
-        return dummy.next
+        var slow2 = 0
+        
+        while true {
+            slow = nums[slow]
+            slow2 = nums[slow2]
+        
+            if slow == slow2 {
+                break
+            }
+        }
+        
+        return slow
     }
 }
 
-Solution().reverseKGroup(createLinkedList([1,2,3,4,5]), 2)
+Solution().findDuplicate([1,3,4,2,2])
