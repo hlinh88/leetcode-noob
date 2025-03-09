@@ -1,21 +1,24 @@
 class Solution {
-    func canBeTypedWords(_ text: String, _ brokenLetters: String) -> Int {
-        var broken = Set(brokenLetters)
-        var words = text.split(separator: " ")
-        var count = 0
-        
-        for word in words {
-            count += 1
-            for char in word {
-                if broken.contains(String(char)) {
-                    count -= 1
-                    break
-                }
+    func numberOfAlternatingGroups(_ colors: [Int], _ k: Int) -> Int {
+        var res = 0
+        var colors = colors + colors[0..<k-1]
+        var l = 0
+        print(colors)
+
+        for r in 1..<colors.count {
+            if colors[r] == colors[r-1] {
+                l = r
+                continue
+            }
+
+            if r - l + 1 == k {
+                res += 1
+                l += 1
             }
         }
-        
-        return count
+
+        return res
     }
 }
 
-Solution().canBeTypedWords("hello world", "ad")
+Solution().numberOfAlternatingGroups([0,1,0,1,0], 3)
