@@ -32,12 +32,11 @@ class Solution {
                     
                     l += 1
                 }
+                return res
             }
             
-            return res
+            return atLeastK(k) - atLeastK(k+1)
         }
-        
-        return atLeastK(k) - atLeastK(k+1)
     }
 }
 
