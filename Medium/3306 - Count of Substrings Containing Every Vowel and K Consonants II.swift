@@ -1,3 +1,10 @@
+// You are given a string word and a non-negative integer k.
+
+// Return the total number of substrings of word that contain every vowel ('a', 'e', 'i', 'o', and 'u') at least once and exactly k consonants.
+
+// Trick: Exactly K = At most K - At most K+1
+
+
 class Solution {
     func countOfSubstrings(_ word: String, _ k: Int) -> Int {
         func atLeastK(_ k: Int) -> Int {
@@ -40,5 +47,3 @@ class Solution {
         return atLeastK(k) - atLeastK(k+1)
     }
 }
-
-Solution().countOfSubstrings("iqeaouqi", 2)
