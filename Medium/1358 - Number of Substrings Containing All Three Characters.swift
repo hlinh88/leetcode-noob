@@ -1,3 +1,8 @@
+// Input: s = "abcabc"
+// Output: 10
+// Explanation: The substrings containing at least one occurrence of the characters a, b and c 
+// are "abc", "abca", "abcab", "abcabc", "bca", "bcab", "bcabc", "cab", "cabc" and "abc" (again).
+
 class Solution {
     func numberOfSubstrings(_ s: String) -> Int {
         var res = 0
