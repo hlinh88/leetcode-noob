@@ -1,3 +1,8 @@
+// Example 1:
+
+// Input: temperatures = [73,74,75,71,69,72,76,73]
+// Output: [1,1,4,2,1,1,0,0]
+
 class Solution {
     func dailyTemperatures(_ temperatures: [Int]) -> [Int] {
         var res = Array(repeating: 0, count: temperatures.count)
