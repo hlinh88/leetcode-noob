@@ -1,3 +1,7 @@
+// Input: nums = [-3,-2,-1,0,0,1,2]
+// Output: 3
+// Explanation: There are 2 positive integers and 3 negative integers. The maximum count among them is 3.
+
 class Solution {
     func maximumCount(_ nums: [Int]) -> Int {
         var res = 0
