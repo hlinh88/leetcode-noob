@@ -1,3 +1,5 @@
+// Binary search range [1, sum / k]
+
 class Solution {
     func maximumCandies(_ candies: [Int], _ k: Int) -> Int {
         var sum = candies.reduce(0, +)
@@ -11,8 +13,6 @@ class Solution {
         while l <= r {
             var mid = l + (r - l) / 2
             
-            print(mid)
-            
             var count = 0
             for c in candies {
                 if c >= mid {
@@ -20,7 +20,7 @@ class Solution {
                 }
                 
                 if count >= k {
-                    break
+                    break 
                 }
             }
             
@@ -35,5 +35,3 @@ class Solution {
         return res
     }
 }
-
-Solution().maximumCandies([5,8,6], 3)
