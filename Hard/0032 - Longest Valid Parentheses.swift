@@ -1,3 +1,9 @@
+// Input: s = ")()())"
+// Output: 4
+// Explanation: The longest valid parentheses substring is "()()".
+
+// Stack of index to find the longest [new - last]
+
 class Solution {
     func longestValidParentheses(_ s: String) -> Int {
         var stack = [-1]
