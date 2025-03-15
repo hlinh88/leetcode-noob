@@ -1,3 +1,5 @@
+// Binary Search - Hard af -> Would rather do backtracking
+
 class Solution {
     func minCapability(_ nums: [Int], _ k: Int) -> Int {
         var left = nums.min()!, right = nums.max()!
@@ -28,5 +30,3 @@ class Solution {
         return res
     }
 }
-
-Solution().minCapability([2,7,9,3,1], 2)
