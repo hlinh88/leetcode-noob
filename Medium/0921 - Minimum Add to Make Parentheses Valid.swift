@@ -17,5 +17,3 @@ class Solution {
         return stack.count
     }
 }
-
-Solution().minAddToMakeValid("((()")
