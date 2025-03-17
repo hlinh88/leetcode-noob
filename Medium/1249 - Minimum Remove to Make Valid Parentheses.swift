@@ -1,3 +1,9 @@
+// Input: s = "lee(t(c)o)de)"
+// Output: "lee(t(c)o)de"
+// Explanation: "lee(t(co)de)" , "lee(t(c)ode)" would also be accepted.
+
+// Go L -> R and R -> L
+
 class Solution {
     func minRemoveToMakeValid(_ s: String) -> String {
         var s = Array(s)
@@ -35,5 +41,3 @@ class Solution {
         return String(s.filter { $0 != " " })
     }
 }
-
-Solution().minRemoveToMakeValid("lee(t(c)o)de)")
