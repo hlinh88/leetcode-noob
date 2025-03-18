@@ -17,5 +17,3 @@ class Solution {
         return maxLength
     }
 }
-
-Solution().longestNiceSubarray([1,3,8,48,10])
