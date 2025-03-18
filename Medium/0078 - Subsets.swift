@@ -1,3 +1,8 @@
+// Input: nums = [1,2,3]
+// Output: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
+
+// Backtracking
+
 class Solution {
     func subsets(_ nums: [Int]) -> [[Int]] {
         var res: [[Int]] = []
@@ -18,6 +23,3 @@ class Solution {
         return res
     }
 }
-
-Solution().subsets([1, 2, 3])
-
