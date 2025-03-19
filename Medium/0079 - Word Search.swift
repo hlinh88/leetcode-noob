@@ -1,3 +1,8 @@
+//Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
+// Output: true
+
+// Super backtracking
+
 class Solution {
     func exist(_ board: [[Character]], _ word: String) -> Bool {
         var row = board.count, col = board[0].count
