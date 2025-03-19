@@ -1,3 +1,8 @@
+// Input: s = "a1b2"
+// Output: ["a1b2","a1B2","A1b2","A1B2"]
+
+// Backtracking
+
 class Solution {
     func letterCasePermutation(_ s: String) -> [String] {
         var ans: [String] = []
@@ -24,7 +29,3 @@ class Solution {
         return ans
     }
 }
-
-
-Solution().letterCasePermutation("a1b2")
-
