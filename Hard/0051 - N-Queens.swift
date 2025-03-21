@@ -1,3 +1,5 @@
+// Best backtraking
+
 class Solution {
     func solveNQueens(_ n: Int) -> [[String]] {
         var columns: Set<Int> = []
