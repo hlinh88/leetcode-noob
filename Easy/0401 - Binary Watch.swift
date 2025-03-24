@@ -1,3 +1,8 @@
+// Input: turnedOn = 1
+// Output: ["0:01","0:02","0:04","0:08","0:16","0:32","1:00","2:00","4:00","8:00"]
+
+// Backtracking
+
 class Solution {
     func readBinaryWatch(_ turnedOn: Int) -> [String] {
         let hours = [8, 4, 2, 1]
@@ -8,7 +13,7 @@ class Solution {
             var validHours = generateDigits(hours, i)
             var validMinutes = generateDigits(minutes, turnedOn - i)
             
-            print("validHours: \(validHours), validMinutes: \(validMinutes)")
+            // print("validHours: \(validHours), validMinutes: \(validMinutes)")
             
             for h in validHours where h < 12 {
                 for m in validMinutes where m < 60 {
@@ -18,17 +23,17 @@ class Solution {
             }
         }
         
-        print(res)
+        // print(res)
         return res
     }
     
-    private func generateDigits(_ nums: [Int], _ count: Int) -> [Int] {
+    func generateDigits(_ nums: [Int], _ count: Int) -> [Int] {
         var res = [Int]()
         backtrack(&res, nums, count, 0, 0)
         return res
     }
     
-    private func backtrack(_ res: inout [Int], _ nums: [Int], _ count: Int, _ pos: Int, _ sum: Int) {
+    func backtrack(_ res: inout [Int], _ nums: [Int], _ count: Int, _ pos: Int, _ sum: Int) {
         if count == 0 {
             res.append(sum)
             return
@@ -38,5 +43,3 @@ class Solution {
         }
     }
 }
-
-Solution().readBinaryWatch(2)
