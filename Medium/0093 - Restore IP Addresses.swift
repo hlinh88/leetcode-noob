@@ -1,3 +1,8 @@
+// Input: s = "25525511135"
+// Output: ["255.255.11.135","255.255.111.35"]
+
+// Backtracking
+
 class Solution {
     func restoreIpAddresses(_ s: String) -> [String] {
         let s = Array(s)
@@ -16,7 +21,6 @@ class Solution {
                 let text = String(s[i ... end])
                 if let num = Int(text), num >= 0, num <= 255, "\(num)" == text {
                     cur.append(text)
-                    print(cur)
                     backtrack(end + 1, &cur)
                     cur.removeLast()
                 }
@@ -28,5 +32,3 @@ class Solution {
         return result
     }
 }
-
-Solution().restoreIpAddresses("25525511135")
