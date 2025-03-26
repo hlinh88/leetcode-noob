@@ -1,3 +1,9 @@
+// DFS 
+// -> Search for land 
+// -> Check every path of land dfs(i - 1, j) + dfs(i + 1, j) + dfs(i, j - 1) + dfs(i, j + 1)
+// -> Add sum == perimeter
+
+
 class Solution {
     func islandPerimeter(_ grid: [[Int]]) -> Int {
         var rows = grid.count
