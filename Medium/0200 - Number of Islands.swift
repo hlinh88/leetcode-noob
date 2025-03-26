@@ -1,3 +1,12 @@
+// DFS
+// Array bool row - col
+// dfs(i - 1, j)
+// dfs(i + 1, j)
+// dfs(i, j - 1)
+// dfs(i, j + 1)
+// Insert to visited node 
+// Loop through grid to count number of islands
+
 class Solution {
     func numIslands(_ grid: [[Character]]) -> Int {
         guard !grid.isEmpty else {
