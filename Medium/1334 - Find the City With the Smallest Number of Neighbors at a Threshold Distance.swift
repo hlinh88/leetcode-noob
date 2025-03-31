@@ -1,3 +1,7 @@
+// Create Adj Matrix 
+// Find shortest path to reach from i -> j 
+// Check with distanceThreshold & larger index condition
+
 class Solution {
     func findTheCity(_ n: Int, _ edges: [[Int]], _ distanceThreshold: Int) -> Int {
         // make adjMatrix
