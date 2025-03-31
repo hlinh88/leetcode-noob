@@ -1,3 +1,10 @@
+// Input: graph = [[1,2],[3],[3],[]]
+// Output: [[0,1,3],[0,2,3]]
+// Explanation: There are two paths: 0 -> 1 -> 3 and 0 -> 2 -> 3.
+
+// Graph
+// Adjacency list -> Visited set -> Check all nodes 
+
 class Solution {
     func allPathsSourceTarget(_ graph: [[Int]]) -> [[Int]] {
         var adjs: [Int: [Int]] = [:]
