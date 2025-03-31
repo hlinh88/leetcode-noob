@@ -17,5 +17,3 @@ class Solution {
         return maxScore - minScore
     }
 }
-
-Solution().putMarbles([1,3,5,1], 2)
