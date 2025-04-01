@@ -1,3 +1,5 @@
+// Graph -> Queue
+
 class Solution {
     func isBipartite(_ graph: [[Int]]) -> Bool {
         if graph.isEmpty { return true }
