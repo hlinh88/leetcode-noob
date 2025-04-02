@@ -12,17 +12,21 @@ public class TreeNode {
 }
 
 class Solution {
-    func isSymmetric(_ root: TreeNode?) -> Bool {
-        func dfs(_ l: TreeNode?, _ r: TreeNode?) -> Bool {
-            guard let l = l, let r = r else {
-                return l == nil && r == nil
+    func hasPathSum(_ root: TreeNode?, _ targetSum: Int) -> Bool {
+        func dfs(_ node: TreeNode?, _ currentSum: Int) -> Bool {
+            if node == nil {
+                return false
             }
-            return l.val == r.val &&
-            dfs(l.left, r.right) &&
-            dfs(l.right, r.left)
+            
+            if node?.left == nil && node?.right == nil {
+                return currentSum == targetSum
+            }
+            
+            return dfs(node?.left, currentSum + node!.val) ||
+            dfs(node?.right, currentSum + node!.val)
         }
         
-        return dfs(root, root)
+        return dfs(root, 0)
     }
 }
 

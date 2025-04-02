@@ -11,23 +11,16 @@ public class TreeNode {
     }
 }
 
-// Inorder traversal -> Left Node Right
-
 class Solution {
-    func inorderTraversal(_ root: TreeNode?) -> [Int] {
-        var res: [Int] = []
-        
-        if let root = root {
-            res += inorderTraversal(root.left)
-            res.append(root.val)
-            res += inorderTraversal(root.right)
-        }
-        
-        print(res)
-        return res
+    func invertTree(_ root: TreeNode?) -> TreeNode? {
+        guard let root = root else { return nil }
+        let left = invertTree(root.left)
+        let right = invertTree(root.right)
+        root.left = right
+        root.right = left
+        return root
     }
 }
-
 
 
 
