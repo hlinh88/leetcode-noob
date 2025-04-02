@@ -1,3 +1,5 @@
+// O(n) 
+
 class Solution {
     func maximumTripletValue(_ nums: [Int]) -> Int {
         var maxVal = 0
