@@ -69,30 +69,37 @@ func printTree(_ root: TreeNode?) {
 }
 
 class Solution {
-    func sumNumbers(_ root: TreeNode?) -> Int {
+    func widthOfBinaryTree(_ root: TreeNode?) -> Int {
+        guard let root = root else { return 0 }
+        
         var res = 0
+        var queue: [(TreeNode?, Int)] = [(root, 0)]
         
-        func dfs(_ node: TreeNode?, _ num: Int) {
-            guard let node = node else {
-                return
-            }
+        while !queue.isEmpty {
+            let levelSize = queue.count
+            let firstIndex = queue.first!.1
+            let lastIndex = queue.last!.1
             
-            if node.left == nil && node.right == nil {
-                let lastVal = num * 10 + node.val
-                res += lastVal
-            } else {
-                dfs(node.left, num * 10 + node.val)
-                dfs(node.right, num * 10 + node.val)
-            }
+            res = max(res, lastIndex - firstIndex + 1)
             
-            print("res: \(res), num: \(num)")
+            for _ in 0..<levelSize {
+                let (node, index) = queue.removeFirst()
+                
+                if let left = node?.left {
+                    print("left: \((left.val, index * 2 + 1))")
+                    queue.append((left, index * 2 + 1))
+                }
+                
+                if let right = node?.right {
+                    print("right: \((right.val, index * 2 + 2))")
+                    queue.append((right, index * 2 + 2))
+                }
+            }
         }
-        
-        dfs(root, 0)
         
         return res
     }
 }
 
-Solution().sumNumbers(buildTree([4,9,0,5,1]))
+Solution().widthOfBinaryTree(buildTree([1,3,2,5,nil,nil,9,6,nil,7]))
 
