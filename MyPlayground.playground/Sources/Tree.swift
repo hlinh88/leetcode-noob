@@ -47,31 +47,64 @@ func buildTree(_ arr: [Int?]) -> TreeNode? {
     return root
 }
 
-// Function to print the tree level by level
+// Helper function to determine tree depth
+func getDepth(_ root: TreeNode?) -> Int {
+    guard let root = root else { return 0 }
+    return 1 + max(getDepth(root.left), getDepth(root.right))
+}
+
+// Print the tree with a better structure
 func printTree(_ root: TreeNode?) {
     guard let root = root else {
         print("Empty Tree")
         return
     }
     
-    var queue: [TreeNode?] = [root]
+    var queue: [(TreeNode?, Int)] = [(root, 0)]
+    let depth = getDepth(root)
+    var levels: [[String]] = Array(repeating: [], count: depth)
     
     while !queue.isEmpty {
-        var levelNodes: [String] = []
-        let levelSize = queue.count
+        let (node, level) = queue.removeFirst()
+        if levels[level].isEmpty { levels[level] = [] }
         
-        for _ in 0..<levelSize {
-            let node = queue.removeFirst()
-            if let node = node {
-                levelNodes.append("\(node.val)")
-                queue.append(node.left)
-                queue.append(node.right)
-            } else {
-                levelNodes.append("null")
-            }
+        if let node = node {
+            levels[level].append("\(node.val)")
+            queue.append((node.left, level + 1))
+            queue.append((node.right, level + 1))
+        } else {
+            levels[level].append(" ")
+            queue.append((nil, level + 1))
+            queue.append((nil, level + 1))
         }
+    }
+    
+    // Remove trailing empty spaces for a cleaner print
+    for i in 0..<levels.count {
+        while levels[i].last == " " { levels[i].removeLast() }
+    }
+
+    // Print the tree
+    let maxWidth = levels.last?.count ?? 1
+    for i in 0..<levels.count {
+        let space = String(repeating: " ", count: (maxWidth - levels[i].count) * 2)
+        print(space + levels[i].joined(separator: "   "))
         
-        print(levelNodes.joined(separator: " "))
+        if i < levels.count - 1 {
+            var connections: [String] = []
+            for j in 0..<levels[i].count {
+                if levels[i][j] != " " {
+                    connections.append("/")
+                } else {
+                    connections.append(" ")
+                }
+                
+                if j < levels[i].count - 1 {
+                    connections.append("\\")
+                }
+            }
+            print(space + connections.joined(separator: "   "))
+        }
     }
 }
 

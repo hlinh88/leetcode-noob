@@ -69,30 +69,30 @@ func printTree(_ root: TreeNode?) {
 }
 
 class Solution {
-    func widthOfBinaryTree(_ root: TreeNode?) -> Int {
-        guard let root = root else { return 0 }
-        
+    func rangeSumBST(_ root: TreeNode?, _ low: Int, _ high: Int) -> Int {
         var res = 0
-        var queue: [(TreeNode?, Int)] = [(root, 0)]
+        var queue: [TreeNode?] = [root]
         
         while !queue.isEmpty {
-            let levelSize = queue.count
-            let firstIndex = queue.first!.1
-            let lastIndex = queue.last!.1
+            let node = queue.removeFirst()!
+            let val = node.val
             
-            res = max(res, lastIndex - firstIndex + 1)
-            
-            for _ in 0..<levelSize {
-                let (node, index) = queue.removeFirst()
-                
-                if let left = node?.left {
-                    print("left: \((left.val, index * 2 + 1))")
-                    queue.append((left, index * 2 + 1))
+            if val < low {
+                if let right = node.right {
+                    queue.append(right)
+                }
+            } else if val > high {
+                if let left = node.left {
+                    queue.append(left)
+                }
+            } else {
+                res += val
+                if let left = node.left {
+                    queue.append(left)
                 }
                 
-                if let right = node?.right {
-                    print("right: \((right.val, index * 2 + 2))")
-                    queue.append((right, index * 2 + 2))
+                if let right = node.right {
+                    queue.append(right)
                 }
             }
         }
@@ -101,5 +101,5 @@ class Solution {
     }
 }
 
-Solution().widthOfBinaryTree(buildTree([1,3,2,5,nil,nil,9,6,nil,7]))
+Solution().rangeSumBST(buildTree([10,5,15,3,7,nil,18]), 7, 15)
 
