@@ -8,35 +8,27 @@ public class Node {
 }
 
 class Solution {
-    func maxDepth(_ root: Node?) -> Int {
-        guard let root = root else {
-            return 0
+    func levelOrder(_ root: Node?) -> [[Int]] {
+        var result: [[Int]] = []
+        guard let root = root else { return result }
+        
+        var queue: [Node] = [root]
+        while !queue.isEmpty {
+            let levelSize = queue.count
+            var levelValues: [Int] = []
+            
+            print("queue: \(queue), result: \(result)")
+            for _ in 0..<levelSize {
+                let currentNode = queue.removeFirst()
+                queue.append(contentsOf: currentNode.children)
+                levelValues.append(currentNode.val)
+            }
+            result.append(levelValues)
+            print("queue: \(queue), result: \(result)")
+            print("--------------------")
         }
         
-        var res = 0
-        var count = 1
-        
-        func dfs(_ node: Node?) {
-            guard let node = node else {
-                res = max(res, count)
-                return
-            }
-            
-            if node.children.isEmpty {
-                res = max(res, count)
-                return
-            }
-            
-            count += 1
-            for child in node.children {
-                dfs(child)
-            }
-            count -= 1
-        }
-        
-        dfs(root)
-        
-        return res
+        return result
     }
 }
 
