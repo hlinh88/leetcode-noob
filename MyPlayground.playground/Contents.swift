@@ -65,24 +65,29 @@ func printTree(_ root: TreeNode?) {
 }
 
 class Solution {
-    func isValidBST(_ root: TreeNode?) -> Bool {
-        let max = Int32.max
-        let min = Int32.min
+    func balanceBST(_ root: TreeNode?) -> TreeNode? {
+        var arr: [TreeNode] = []
         
-        func dfs(_ node: TreeNode?, _ max: Int, _ min: Int) -> Bool {
-            guard let node = node else { return true }
-            
-            let val = node.val
-            
-            if val < min || val > max {
-                return false
-            }
-            
-            return dfs(node.left, val - 1, min) && dfs(node.right, max, val + 1)
+        func inorder(_ node: TreeNode?) {
+            guard let node = node else { return }
+            inorder(node.left)
+            arr.append(node)
+            inorder(node.right)
         }
         
-        return dfs(root, Int(max), Int(min))
+        func buildTree(_ nodes: [TreeNode], _ start: Int, _ end: Int) -> TreeNode? {
+            if start > end { return nil }
+            let mid = (start + end) / 2
+            let node = TreeNode(nodes[mid].val)
+            node.left = buildTree(nodes, start, mid - 1)
+            node.right = buildTree(nodes, mid + 1, end)
+            return node
+        }
+        
+        inorder(root)
+        
+        return buildTree(arr, 0, arr.count - 1)
     }
 }
 
-Solution().isValidBST(buildTree([5,1,4,nil,nil,3,6]))
+Solution().balanceBST(buildTree([1,nil,2,nil,3,nil,4,nil,nil]))
