@@ -1,3 +1,5 @@
+// Dynamic programming
+
 class Solution {
     func largestDivisibleSubset(_ nums: [Int]) -> [Int] {
         var nums = nums.sorted()
