@@ -1,3 +1,5 @@
+// Binary Search
+
 class Solution {
     func mySqrt(_ x: Int) -> Int {
         var l = 0, r = x
@@ -20,5 +22,3 @@ class Solution {
         return r
     }
 }
-
-Solution().mySqrt(8)
