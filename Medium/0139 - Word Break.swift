@@ -1,3 +1,5 @@
+// Dynamic Programming
+
 class Solution {
     func wordBreak(_ s: String, _ wordDict: [String]) -> Bool {
         var dp: [Bool] = Array(repeating: false, count: s.count + 1)
