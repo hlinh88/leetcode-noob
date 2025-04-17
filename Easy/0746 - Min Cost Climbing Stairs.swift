@@ -1,3 +1,5 @@
+// Dynamic Programming
+
 class Solution {
     func minCostClimbingStairs(_ cost: [Int]) -> Int {
         var dp = Array(repeating: 0, count: cost.count)
