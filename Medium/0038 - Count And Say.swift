@@ -30,22 +30,21 @@ class Solution {
     }
 
     func rle(_ str: String) -> String {
-        var result = ""
-        var previousChar = str.first!
-        var count = 0
-
-        for char in str {
-            if char == previousChar {
+        var chars = Array(str)
+        var result = [String]()
+        var count = 1
+        
+        for i in 1..<chars.count {
+            if chars[i] == chars[i-1] {
                 count += 1
             } else {
-                result.append("\(count)\(previousChar)")
-                previousChar = char
+                result.append("\(count)\(chars[i-1])")
                 count = 1
             }
         }
-
-        result.append("\(count)\(previousChar)")
-        return result
+        
+        result.append("\(count)\(chars.last!)")
+        return result.joined()
     }
 }
 
