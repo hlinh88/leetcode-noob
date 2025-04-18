@@ -1,3 +1,5 @@
+// Dynamic Programming
+
 class Solution {
     func rob(_ nums: [Int]) -> Int {
         var n = nums.count
