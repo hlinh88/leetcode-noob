@@ -1,3 +1,5 @@
+// Math
+
 class Solution {
     func numberOfArrays(_ differences: [Int], _ lower: Int, _ upper: Int) -> Int {
         var i = 0, j = 0, cur = 0
