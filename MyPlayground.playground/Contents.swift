@@ -1,25 +1,24 @@
 class Solution {
-    func countCompleteSubarrays(_ nums: [Int]) -> Int {
-        var totalDistinct = Set(nums).count
-        var freq: [Int: Int] = [:]
-        var res = 0
-        var left = 0
+    func firstMissingPositive(_ nums: inout [Int]) -> Int {
+        let n = nums.count
         
-        for right in 0..<nums.count {
-            freq[nums[right], default: 0] += 1
-           
-            while freq.keys.count == totalDistinct {
-                res += nums.count - right
-                freq[nums[left], default: 1] -= 1
-                if freq[nums[left]] == 0 {
-                    freq.removeValue(forKey: nums[left])
-                }
-                left += 1
+        for i in 0..<n {
+            while nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i] {
+                nums.swapAt(i, nums[i] - 1)
+                print(nums)
             }
         }
         
-        return res
+        for i in 0..<n {
+            if nums[i] != i + 1 {
+                return i + 1
+            }
+        }
+        
+        return n + 1
     }
+
 }
 
-Solution().countCompleteSubarrays([1, 3, 1, 2, 2])
+var arr = [3, 4, -1, 1]
+Solution().firstMissingPositive(&arr)
