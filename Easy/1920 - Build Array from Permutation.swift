@@ -9,5 +9,3 @@ class Solution {
         return result
     }
 }
-
-Solution().buildArray([0,2,1,5,3,4])
