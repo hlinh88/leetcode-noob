@@ -10,5 +10,3 @@ class Solution {
         return num 
     }
 }
-
-Solution().addDigits(38)
