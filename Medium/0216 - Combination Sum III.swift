@@ -1,3 +1,5 @@
+// Backtracking 
+
 class Solution {
     func combinationSum3(_ k: Int, _ n: Int) -> [[Int]] {
         var res: [[Int]] = []
@@ -20,5 +22,3 @@ class Solution {
         return res
     }
 }
-
-Solution().combinationSum3(3, 9)
