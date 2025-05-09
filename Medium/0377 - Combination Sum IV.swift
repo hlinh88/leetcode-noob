@@ -1,3 +1,5 @@
+// Dynamic Programming 
+
 class Solution {
     func combinationSum4(_ nums: [Int], _ target: Int) -> Int {
         var dp: [Int: Int] = [:]
@@ -17,5 +19,3 @@ class Solution {
         return ans
     }
 }
-
-Solution().combinationSum4([1, 2, 3], 4)
