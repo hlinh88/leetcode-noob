@@ -23,7 +23,4 @@ class Solution {
         
         return result
     }
-    
 }
-
-Solution().findEvenNumbers([2, 1, 3, 0])
