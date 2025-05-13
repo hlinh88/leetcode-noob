@@ -29,5 +29,3 @@ class Solution {
         return res
     }
 }
-
-Solution().lengthAfterTransformations("abcyy", 2)
