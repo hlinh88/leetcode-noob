@@ -16,5 +16,3 @@ class Solution {
         return freq.first!.key
     }
 }
-
-Solution().findTheDifference("abcd", "abcde")
