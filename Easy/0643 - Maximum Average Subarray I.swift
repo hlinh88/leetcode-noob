@@ -14,5 +14,3 @@ class Solution {
         return res
     }
 }
-
-Solution().findMaxAverage([-1], 1)
