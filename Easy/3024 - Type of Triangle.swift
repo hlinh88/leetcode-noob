@@ -19,5 +19,3 @@ class Solution {
         return (a + b) > c && (a + c) > b && (b + c) > a
     }
 }
-
-Solution().triangleType([3, 4, 5])
