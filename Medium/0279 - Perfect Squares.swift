@@ -1,3 +1,5 @@
+// Dynamic Programming
+
 class Solution {
     func numSquares(_ n: Int) -> Int {
         var nums: [Int] = []
