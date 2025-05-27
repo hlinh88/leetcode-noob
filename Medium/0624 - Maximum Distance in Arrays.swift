@@ -15,5 +15,3 @@ class Solution {
         return maxDistance
     }
 }
-
-Solution().maxDistance([[1,4],[0,5]])
