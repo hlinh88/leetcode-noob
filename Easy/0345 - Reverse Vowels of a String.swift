@@ -39,5 +39,3 @@ class Solution {
         }
     }
 }
-
-Solution().reverseVowels("leetcode")
