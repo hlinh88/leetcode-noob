@@ -22,5 +22,3 @@ class Solution {
         return res 
     }
 }
-
-Solution().longestPalindrome("abccccdd")
