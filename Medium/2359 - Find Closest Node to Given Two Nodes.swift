@@ -1,3 +1,5 @@
+// Graph + BFS
+
 class Solution {
     func closestMeetingNode(_ edges: [Int], _ node1: Int, _ node2: Int) -> Int {
         var graph = [Int: [Int]]()
@@ -28,9 +30,6 @@ class Solution {
         dist1[node1] = 0
         dist2[node2] = 0
         
-        print(dist1)
-        print(dist2)
-        
         var minDistance = Int.max
         var result = -1
         
@@ -47,5 +46,3 @@ class Solution {
         return result
     }
 }
-
-Solution().closestMeetingNode([2, 2, 3, -1], 0, 1)
