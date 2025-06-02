@@ -1,6 +1,6 @@
 class Solution {
     func largestInteger(_ num: Int) -> Int {
-        var odds: [Int] = []
+         var odds: [Int] = []
         var evens: [Int] = []
         var digits: [Int] = []
         var num = num
@@ -18,10 +18,6 @@ class Solution {
         odds = odds.sorted(by: >)
         evens = evens.sorted(by: >)
         
-        print(odds)
-        print(evens)
-        print(digits)
-        
         var res = Array(repeating: -1, count: digits.count)
         for (i, digit) in digits.enumerated() {
             if digit % 2 == 0 {
@@ -34,5 +30,3 @@ class Solution {
         return res.reduce(0) { $0 * 10 + $1 }
     }
 }
-
-Solution().largestInteger(1234)
