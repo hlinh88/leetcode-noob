@@ -29,5 +29,3 @@ class Solution {
         return String(result)
     }
 }
-
-Solution().robotWithString("baadc")
