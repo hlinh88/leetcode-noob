@@ -1,30 +1,24 @@
 class Solution {
-    func findKthNumber(_ n: Int, _ k: Int) -> Int {
-        var current = 1
-        var k = k - 1
+    func numDistinct(_ s: String, _ t: String) -> Int {
+        var s = Array(s), t = Array(t)
+        var dp: [[Int]] = Array(repeating: Array(repeating: 0, count: t.count + 1), count: s.count + 1)
         
-        while k > 0 {
-            var steps = 0
-            var prefix1 = current, prefix2 = current + 1
-            while prefix1 <= n {
-                steps += min(n + 1, prefix2) - prefix1
-                prefix1 *= 10
-                prefix2 *= 10
-                print("steps: \(steps), prefix1: \(prefix1), prefix2: \(prefix2)")
-            }
-            
-            if steps <= k {
-                k -= steps
-                current += 1
-            } else {
-                current *= 10
-                k -= 1
-            }
-            print("steps: \(steps), current: \(current), k: \(k)\n")
+        for i in 0..<s.count+1 {
+            dp[i][0] = 1
         }
         
-        return current
+        for i in 1..<s.count+1 {
+            for j in 1..<t.count+1 {
+                if s[i-1] == t[j-1] {
+                    dp[i][j] = dp[i-1][j-1] + dp[i-1][j]
+                } else {
+                    dp[i][j] = dp[i-1][j]
+                }
+            }
+        }
+        
+        return dp[s.count][t.count] 
     }
 }
 
-Solution().findKthNumber(13, 8)
+Solution().numDistinct("rabbbit", "rabbit")
