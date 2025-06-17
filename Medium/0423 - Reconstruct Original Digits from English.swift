@@ -25,5 +25,3 @@ class Solution {
         return String(result.sorted())
     }
 }
-
-Solution().originalDigits("owoztneoer")
