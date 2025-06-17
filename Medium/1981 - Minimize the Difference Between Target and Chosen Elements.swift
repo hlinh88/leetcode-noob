@@ -24,5 +24,3 @@ class Solution {
         return result
     }
 }
-
-Solution().minimizeTheDifference([[1,2,3],[4,5,6],[7,8,9]], 13)
