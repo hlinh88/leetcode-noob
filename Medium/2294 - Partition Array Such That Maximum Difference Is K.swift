@@ -14,5 +14,3 @@ class Solution {
         return result
     }
 }
-
-Solution().partitionArray([3, 6, 1, 2, 5], 2)
