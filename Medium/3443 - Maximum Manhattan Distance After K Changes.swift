@@ -22,5 +22,3 @@ class Solution {
         return result
     }
 }
-
-Solution().maxDistance("NWSE", 1)
