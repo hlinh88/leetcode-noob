@@ -19,5 +19,3 @@ class Solution {
         return result.joined()
     }
 }
-
-Solution().freqAlphabets("10#11#12")
