@@ -22,5 +22,3 @@ class Solution {
         return ans
     }
 }
-
-Solution().findKDistantIndices([3,4,9,1,3,9,5], 9, 1)
