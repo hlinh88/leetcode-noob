@@ -10,5 +10,3 @@ class Solution {
         return nums.reduce(0, +)
     }
 }
-
-Solution().largestSumAfterKNegations([-2,9,9,8,4], 3)
