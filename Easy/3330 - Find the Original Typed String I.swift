@@ -14,5 +14,3 @@ class Solution {
         return result
     }
 }
-
-Solution().possibleStringCount("abbcccc")
