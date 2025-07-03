@@ -1,18 +1,15 @@
 class Solution {
-    func possibleStringCount(_ word: String) -> Int {
-        var result = 1
-        var lastChar = word.first!
+    func kthCharacter(_ k: Int) -> Character {
+        var word = [1]
+        word.reserveCapacity(k)
         
-        for char in word.dropFirst() {
-            if char == lastChar {
-                result += 1
-            } else {
-                lastChar = char
-            }
+        while word.count < k {
+            word += word.map({ w in
+                w + 1 < 26 ? w+1 : 1
+            })
         }
-        
-        return result
+        return Character(UnicodeScalar(word[k-1] + 96)!)
     }
 }
 
-Solution().possibleStringCount("abbcccc")
+Solution().kthCharacter(5)
