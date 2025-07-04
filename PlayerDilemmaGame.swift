@@ -12,7 +12,7 @@ protocol Strategy {
 class StrategyImpl: Strategy {
     var myChoices: [Bool] = []
     var opponentChoices: [Bool] = []
-    
+
     func makeChoice() -> Bool {
         return true
     }
@@ -46,16 +46,24 @@ class AlwaysDefectStrategy: StrategyImpl {
 
 class TitForTatStrategy: StrategyImpl {
     override func makeChoice() -> Bool {
-        if let last = opponentChoices.last, !last {
-            return updateMyChoice(false)
+        if myChoices.isEmpty {
+            return updateMyChoice(true)
+        }
+        
+        if let last = opponentChoices.last {
+            return updateMyChoice(last)
         }
 
         return updateMyChoice(true)
     }
 }
 
-class TwoTitsOneTatStrategy: StrategyImpl {
+class TwoTitsForOneTatStrategy: StrategyImpl {
     override func makeChoice() -> Bool {
+        if myChoices.isEmpty {
+            return updateMyChoice(true)
+        }
+        
         if opponentChoices.count >= 2 {
             let lastTwo = opponentChoices.suffix(2)
             if lastTwo.allSatisfy({ !$0 }) {
@@ -68,18 +76,27 @@ class TwoTitsOneTatStrategy: StrategyImpl {
 
 class OneTitForTwoTatStrategy: StrategyImpl {
     override func makeChoice() -> Bool {
+        if myChoices.isEmpty {
+            return updateMyChoice(true)
+        }
+        
         if opponentChoices.count >= 2 {
             let lastTwo = opponentChoices.suffix(2)
-            if lastTwo.contains(false) {
-                return updateMyChoice(false)
+            if lastTwo.allSatisfy({ $0 }) {
+                return updateMyChoice(true)
             }
         }
-        return updateMyChoice(true)
+        
+        return updateMyChoice(false)
     }
 }
 
 class GrimTriggerStrategy: StrategyImpl {
     override func makeChoice() -> Bool {
+        if myChoices.isEmpty {
+            return updateMyChoice(true)
+        }
+        
         if opponentChoices.contains(false) {
             return updateMyChoice(false)
         }
@@ -94,8 +111,8 @@ class SuspiciousStrategy: StrategyImpl {
             return updateMyChoice(false)
         }
 
-        if let lastOpponentChoice = opponentChoices.last {
-            return updateMyChoice(lastOpponentChoice)
+        if let last = opponentChoices.last {
+            return updateMyChoice(last)
         }
 
         return updateMyChoice(true)
@@ -122,7 +139,7 @@ class PlayersDilemmaGame {
             ("AlwaysCooperate", AlwaysCooperateStrategy()),
             ("AlwaysDefect", AlwaysDefectStrategy()),
             ("TitForTat", TitForTatStrategy()),
-            ("TwoTitsForOneTat", TwoTitsOneTatStrategy()),
+            ("TwoTitsForOneTat", TwoTitsForOneTatStrategy()),
             ("OneTitForTwoTat", OneTitForTwoTatStrategy()),
             ("Grim", GrimTriggerStrategy()),
             ("SuspiciousTitForTat", SuspiciousStrategy()),
@@ -144,14 +161,13 @@ class PlayersDilemmaGame {
         for (name, score) in tournament.sorted(by: { $0.value > $1.value }) {
             print("\(name) scored total \(score)")
         }
-        print(tournament)
     }
 
     func startMatch(_ player1: Player, _ player2: Player) {
         // Reset
         player1.strategy.reset()
         player2.strategy.reset()
-
+        
         var p1Points = 0, p2Points = 0
         for _ in 0..<ROUNDS {
             // Make choice
