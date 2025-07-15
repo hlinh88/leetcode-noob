@@ -1,28 +1,32 @@
 class Solution {
-    func kthCharacter(_ k: Int64, _ operations: [Int]) -> Character {
-        var shift = 0
-        var lengths: [Int64] = []
-        var len: Int64 = 1
-        var k = k
-        
-        for op in operations {
-            len *= 2
-            lengths.append(len)
-            if len >= k { break }
-        }
+    func maxEvents(_ events: [[Int]]) -> Int {
+        let events = events.sorted { $0[0] < $1[0] }
+        var minHeap = [Int]() // stores end days
+        var day = 0
+        var i = 0
+        var res = 0
+        let n = events.count
+        let lastDay = events.map { $0[1] }.max() ?? 0
 
-        for i in stride(from: lengths.count - 1, through: 0, by: -1) {
-            let half = lengths[i] / 2
-            let op = operations[i]
-            
-            if k > half {
-                k -= half
-                if op == 1 { shift += 1 }
+        for day in 1...lastDay {
+            // Add all events that start today
+            while i < n && events[i][0] == day {
+                minHeap.append(events[i][1])
+                i += 1
             }
-            // else: k remains the same
+            
+            // Remove expired events
+            minHeap = minHeap.filter { $0 >= day }
+            
+            // Attend event that ends earliest
+            if !minHeap.isEmpty {
+                minHeap.sort() // Keep sorted by end time
+                minHeap.removeFirst()
+                res += 1
+            }
         }
 
-        let charValue = (shift % 26)
-        return Character(UnicodeScalar(charValue + Int(("a" as UnicodeScalar).value))!)
+        return res
     }
 }
+
