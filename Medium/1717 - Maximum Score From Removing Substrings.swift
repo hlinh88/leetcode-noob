@@ -20,5 +20,3 @@ class Solution {
         return res
     }
 }
-
-Solution().maximumGain("aabbaaxybbaabb", 5, 4)
