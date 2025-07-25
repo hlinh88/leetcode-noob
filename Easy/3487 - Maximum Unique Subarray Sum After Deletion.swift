@@ -15,5 +15,3 @@ class Solution {
         return unique.count > 0 ? sum : maxNum
     }
 }
-
-Solution().maxSum([1,2,-1,-2,1,0,-1])
