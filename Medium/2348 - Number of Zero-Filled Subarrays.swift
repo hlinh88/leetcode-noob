@@ -14,5 +14,3 @@ class Solution {
         return result
     }
 }
-
-Solution().zeroFilledSubarray([1,3,0,0,2,0,0,4])
