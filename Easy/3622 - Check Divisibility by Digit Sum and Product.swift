@@ -10,8 +10,6 @@ class Solution {
         }
         
         let sum = digits.reduce(0, +), product = digits.reduce(1, *)
-        return (sum + product) % n == 0
+        return n % (sum + product) == 0 
     }
 }
-
-Solution().checkDivisibility(8)
